@@ -185,7 +185,8 @@ public class Streams// extends Template
 			{
 				FileOutputStream sali = new FileOutputStream("Functional.obj");
 				ObjectOutputStream fout = new ObjectOutputStream(sali);
-				fout.writeObject((Functional)a);
+				Functional aux = (Functional)a;
+				fout.writeObject(aux);
 				fout.close();
 
 			}

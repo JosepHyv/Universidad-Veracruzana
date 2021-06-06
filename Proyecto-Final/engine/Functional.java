@@ -1,10 +1,13 @@
 package engine;
 
+/* todas son necesarias, no eliminar */
 import resources.Template;
 import resources.Academia;
 import resources.Profesor;
 import resources.Estudiante;
 import java.io.Serializable;
+/// porfi 
+
 
 public class Functional extends Template 
 {
@@ -137,6 +140,21 @@ public class Functional extends Template
 
 	public String getNombre(){
 		return "Class <Functional>";
+	}
+
+	public String toString()
+	{
+		String res = "\tTotal de nodos\n";
+		res += "\tCada Academia: \n";
+		for(int c = 0 ; c<this.it1; c++)
+			res += this.academy[c];
+		res += "\n\tCada Profesor: \n";
+		for(int c = 0 ; c<this.it2; c++)
+			res += this.teacher[c];
+		res += "\n\tCada Estudiante: \n";
+		for(int c = 0 ; c<this.it3; c++)
+			res += this.student[c];
+		return res;
 	}
 
 }

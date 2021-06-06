@@ -2,20 +2,15 @@
 import engine.*; /// clases que nos permite Procesar los datos y guardarlos 
 import resources.*; /// clases del modelo UML
 //// importo todos los paquetes que creamos
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
+
 
 public class Main
 {
 	public static void main(String[] args)
 	{
 		
-		Academia cosito = new Academia("olo", new Profesor("Juan perez", "123", "Planta"));
-		try
+		//Academia cosito = new Academia("olo", new Profesor("Juan perez", "123", "Planta"));
+		/*try
 		{
 			//ObjectInputStream cin = new ObjectInputStream( new FileInputStream("Academia.obj"));
 			FileOutputStream sali = new FileOutputStream("Academia.obj");
@@ -33,9 +28,9 @@ public class Main
 
 		Streams flujo = new Streams();
 		Academia cosito2 = (Academia)flujo.Read(new Academia());
-		System.out.println(cosito2);
+		System.out.println(cosito2);*/
 
-		/*Curso cursito = new Curso("Mates", "12342", 2,6);
+		Curso cursito = new Curso("Mates", "12342", 2,6);
 		cursito.addDocente("Julion Alvares");
 		cursito.addEstudiante("s2000201");
 		ExperienciaEducativa expi = new ExperienciaEducativa("Exactas", "2032", 365);
@@ -56,10 +51,31 @@ public class Main
 		intro.insert(aux);
 		ostia.addExperiencia(expi);
 		intro.insert(ostia);
-		System.out.println(intro.getAcademia(0));
-		intro.remove(ostia);
-		System.out.println(intro.sizeAcademia());
-		*/
+		//System.out.println(intro.getAcademia(0));
+		//intro.remove(ostia);
+		//System.out.println(intro.sizeAcademia());
+		
+
+		System.out.println("Antes de leer \n" + intro);
+		System.out.println("Numero De Academias " + intro.sizeAcademia());
+		System.out.println(intro.sizeAcademia() > 0 ? intro.getAcademia(0) : "No hay nada");
+
+		Streams flujo = new Streams();
+		flujo.Save(intro);
+		flujo.Save(cursito2);
+		intro = new Functional();
+
+		intro = (Functional)flujo.Read(new Functional());
+
+		System.out.println("\n\n=========\n\n");
+
+		System.out.println("Despues de Leer\n" + intro);
+		System.out.println("Numero De Academias " + intro.sizeAcademia());
+		System.out.println(intro.sizeAcademia() > 0 ? intro.getAcademia(0) : "No hay nada");
+
+
+
+
 
 	}
 
