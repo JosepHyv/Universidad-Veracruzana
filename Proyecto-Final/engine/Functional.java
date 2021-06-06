@@ -12,14 +12,45 @@ import java.io.Serializable;
 public class Functional extends Template 
 {
 	/// es mejor usar la vector, pero usaremos arreglos normales
-	private Academia[] academy = new Academia[10002];
-	private Profesor[] teacher = new Profesor[10002];
-	private Estudiante[] student = new Estudiante[10002];
+	private Academia[] academy = new Academia[12];
+	private Profesor[] teacher = new Profesor[12];
+	private Estudiante[] student = new Estudiante[12];
 	private int it1 = 0, it2 = 0, it3 = 0;
 
 	public Functional()
 	{
 
+	}
+
+	public int findAcademia(String a)
+	{	
+		for(int c = 0 ; c<this.it1; c++)
+		{
+
+			if( a.equalsIgnoreCase(this.academy[c].getNombre()))
+				return c;
+		}
+		return -1;
+	}
+	public int findProfesor(String a)
+	{	
+		for(int c = 0 ; c<this.it2; c++)
+		{
+
+			if( a.equalsIgnoreCase(this.teacher[c].getNombre()))
+				return c;
+		}
+		return -1;
+	}
+	public int findEstudiante(String a)
+	{	
+		for(int c = 0 ; c<this.it3; c++)
+		{
+
+			if( a.equalsIgnoreCase(this.student[c].getNombre()))
+				return c;
+		}
+		return -1;
 	}
 
 	//// recibe un nombre, una arreglo y un fin
@@ -43,7 +74,7 @@ public class Functional extends Template
 	{
 		if( x instanceof Academia)
 		{
-			if( find(x.getNombre(), this.academy, this.it1) == -1 && this.it1 < 10002)
+			if( find(x.getNombre(), this.academy, this.it1) == -1 && this.it1 < 12)
 				this.academy[this.it1++] = ((Academia)x);
 			else 
 			{
@@ -53,7 +84,7 @@ public class Functional extends Template
 		}
 		else if( x instanceof Profesor)
 		{
-			if( find(x.getNombre(), this.teacher, this.it2) == -1 && this.it2 < 10002)
+			if( find(x.getNombre(), this.teacher, this.it2) == -1 && this.it2 < 12)
 				this.teacher[this.it2++] = ((Profesor)x);
 			else 
 			{
@@ -63,7 +94,7 @@ public class Functional extends Template
 		}
 		else
 		{
-			if( find( x.getNombre(), this.student, this.it3) == -1 && this.it3 < 10002)
+			if( find( x.getNombre(), this.student, this.it3) == -1 && this.it3 < 12)
 				this.student[this.it3++] = ((Estudiante)x);
 			else 
 			{
@@ -106,6 +137,36 @@ public class Functional extends Template
 			for(int c = pos; c<tam-1; c++)
 				this.student[c] = this.student[c+1];
 			this.it3--;
+		}
+	}
+
+	public void setAcademia(int a, Academia b )
+	{
+		if( a > 0 && a < 12)
+			this.academy[a] = b;
+		else 
+		{
+			System.err.println("Error en rangos");
+		}
+	}
+
+	public void setProfesor(int a, Profesor b )
+	{
+		if( a > 0 && a < 12)
+			this.teacher[a] = b;
+		else 
+		{
+			System.err.println("Error en rangos");
+		}
+	}
+
+	public void setEstudiante(int a , Estudiante b )
+	{
+		if( a > 0 && a < 12)
+			this.student[a] = b;
+		else 
+		{
+			System.err.println("Error en rangos");
 		}
 	}
 

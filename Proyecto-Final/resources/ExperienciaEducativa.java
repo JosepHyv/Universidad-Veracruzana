@@ -8,10 +8,14 @@ public class ExperienciaEducativa extends Template  {
 	private Curso[] curso = new Curso[5]; /// aqui puede haber más de uno ? 
 	//private Curso curso;
 	private int numCurso = 0; 
-
 	public ExperienciaEducativa(){
 	}
 
+
+	public ExperienciaEducativa(String a)
+	{
+		this.nombre = a;
+	}
 	public ExperienciaEducativa(String nom, String c, int tC){
 		this.nombre = nom;
 		this.clave = c;

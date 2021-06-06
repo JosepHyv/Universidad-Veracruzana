@@ -20,7 +20,7 @@ public class Streams// extends Template
 	/// Retorna un Template del Archivo Leido
 	/* Solo Funciona con aquellas Clases que extienden a Template
 	 y estan registradas aqui */ 
-	public Template Read(Template a) //throws FileNotFoundException //IOException //throws FileNotFoundException
+	public Template read(Template a) //throws FileNotFoundException //IOException //throws FileNotFoundException
 	{
 		if( a instanceof Functional)
 		{
@@ -177,7 +177,7 @@ public class Streams// extends Template
 		return a;
 	}
 
-	public void Save(Template a)
+	public void save(Template a)
 	{
 		if( a instanceof Functional)
 		{

@@ -44,6 +44,18 @@ public class Academia  extends Template  {
 			System.err.println("No hay capacidad para más experiencias educativas");
 	}
 
+	public int findExperiencia(String a)
+	{
+		int ans = -1;
+		for(int c = 0 ; c<this.numExperiencia; c++)
+			if( a.equalsIgnoreCase(this.ee[c].getNombre()))
+			{
+				ans = c;
+				break;
+			}
+		return ans;
+	}
+
 	public ExperienciaEducativa getEE(int i){
 		return ee[i];
 	}
