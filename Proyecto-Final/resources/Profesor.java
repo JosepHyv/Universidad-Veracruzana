@@ -1,6 +1,7 @@
 package resources; // lo empaquetamos 
+import java.io.Serializable;
 
-public class Profesor extends Template{
+public class Profesor extends Template {
 	private String numeroDePersonal;
 	private String nombre;
 	private String tipoDeContratacion;

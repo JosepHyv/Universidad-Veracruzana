@@ -1,6 +1,7 @@
 package resources; // lo empaquetamos 
+import java.io.Serializable;
 
-public class ExperienciaEducativa extends Template {
+public class ExperienciaEducativa extends Template  {
 	private String nombre;
 	private String clave;
 	private int totalDeCreditos; //// verificar los creditos 

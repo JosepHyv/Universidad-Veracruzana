@@ -1,6 +1,7 @@
 package resources; // lo empaquetamos 
+import java.io.Serializable;
 
-public class Curso extends Template {
+public class Curso extends Template  {
 
 	private String nombre;
 	private String nrc;

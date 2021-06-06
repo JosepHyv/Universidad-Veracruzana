@@ -1,6 +1,7 @@
 package resources; // lo empaquetamos 
+import java.io.Serializable;
 
-public class Estudiante extends Template {
+public class Estudiante extends Template  {
 	private String matricula;
 	private String nombre;
 	///private Curso[] curso= new Curso[6];

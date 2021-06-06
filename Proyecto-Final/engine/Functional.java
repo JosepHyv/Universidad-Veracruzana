@@ -1,10 +1,12 @@
 package engine;
+
 import resources.Template;
 import resources.Academia;
 import resources.Profesor;
 import resources.Estudiante;
+import java.io.Serializable;
 
-public class Functional
+public class Functional extends Template 
 {
 	/// es mejor usar la vector, pero usaremos arreglos normales
 	private Academia[] academy = new Academia[10002];
@@ -23,6 +25,7 @@ public class Functional
 	{	
 		for(int c = 0 ; c<f; c++)
 		{
+
 			if( a.equalsIgnoreCase(b[c].getNombre()))
 				return c;
 		}
@@ -47,7 +50,7 @@ public class Functional
 		}
 		else if( x instanceof Profesor)
 		{
-			if( find( x.getNombre(), this.teacher, this.it2) == -1 && this.it2 < 10002)
+			if( find(x.getNombre(), this.teacher, this.it2) == -1 && this.it2 < 10002)
 				this.teacher[this.it2++] = ((Profesor)x);
 			else 
 			{
@@ -132,5 +135,8 @@ public class Functional
 		return this.it3;
 	}
 
+	public String getNombre(){
+		return "Class <Functional>";
+	}
 
 }

@@ -1,6 +1,6 @@
 package resources; // lo empaquetamos 
-
-public class Academia extends Template {
+import java.io.Serializable;
+public class Academia  extends Template  {
 	private String nombre;
 	private Profesor coordinador;
 	private ExperienciaEducativa [] ee = new ExperienciaEducativa[3];
