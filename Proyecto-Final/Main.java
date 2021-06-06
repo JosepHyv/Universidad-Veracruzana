@@ -13,26 +13,28 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-
-		Streams flujo = new Streams();
-		Academia cosito;
-		flujo.Read(cosito = new Academia());
-/*		//Academia cosito = new Academia("olo", new Profesor("Juan perez", "123", "Planta"));
+		
+		Academia cosito = new Academia("olo", new Profesor("Juan perez", "123", "Planta"));
 		try
 		{
-			ObjectInputStream cin = new ObjectInputStream( new FileInputStream("Academia.obj"));
+			//ObjectInputStream cin = new ObjectInputStream( new FileInputStream("Academia.obj"));
 			FileOutputStream sali = new FileOutputStream("Academia.obj");
 			ObjectOutputStream sals = new ObjectOutputStream(sali);
 			sals.writeObject(cosito);
 			sals.close();
 
-			Academia cosito = (Academia)cin.readObject();
-			System.out.println(cosito);
+		//	Academia cosito = (Academia)cin.readObject();
+			//System.out.println(cosito);
 		}
 		catch(Exception e)
 		{
 			System.err.println("Errorss: " + e.getMessage());
-		}*/
+		}
+
+		Streams flujo = new Streams();
+		Academia cosito2 = (Academia)flujo.Read(new Academia());
+		System.out.println(cosito2);
+
 		/*Curso cursito = new Curso("Mates", "12342", 2,6);
 		cursito.addDocente("Julion Alvares");
 		cursito.addEstudiante("s2000201");
@@ -68,39 +70,5 @@ public class Main
 		return false;
 	}*/
 
-	void addEE()
-	{
-
-	}
-
-	void addProfesor()
-	{
-
-	}
-
-	void addAcademia()
-	{
-
-	}
-
-	void addCurso()
-	{
-
-	}
-
-	void addAlumno()
-	{
-
-	}
-/*
-	void merge(ExperienciaEducativa a, Profesor b, Academia c, Curso d, Alumno e)
-	{
-
-	}*/
-
-	void edit()
-	{
-
-	}
 
 }
