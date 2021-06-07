@@ -100,7 +100,7 @@ public class Ventana extends JFrame {
 			String ans = "";
 			for(int c = 0 ; c<aux.sizeAcademia(); c++)
 				ans += aux.getAcademia(c);
-			Pantalla ventana = new Pantalla("","este es el norte", ans);
+			Pantalla ventana = new Pantalla("Academias","Todas las Academias", ans);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Ventana extends JFrame {
 	{
 		public void actionPerformed(ActionEvent x)
 		{
-			JBusqueda ventana = new JBusqueda("Estudiantes", "Academia", getNodo());
+			JBusqueda ventana = new JBusqueda("Estudiantes de una Academia", "Academia", getNodo());
 		}
 	}
 

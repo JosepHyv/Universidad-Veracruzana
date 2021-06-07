@@ -226,6 +226,7 @@ public class Main
 				//System.out.println(padre);
 				//IMenu menu = new IMenu();
 				Ventana consulta = new Ventana(padre);
+				
 			}
 			else if( op == 3 )
 			{
@@ -237,7 +238,9 @@ public class Main
 			}
 			else if( op == 5 )
 			{
+				clearScreen();
 				sigue = false;
+				break;
 			}
 			clearScreen();
 		}

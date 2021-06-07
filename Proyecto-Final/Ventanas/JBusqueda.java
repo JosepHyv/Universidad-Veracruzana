@@ -96,22 +96,20 @@ public class JBusqueda extends JFrame{
 			{
 				Functional aux = (Functional)getNodo();
 				int pos = aux.findAcademia(acad);
-				Academia ac;
 				if( pos != -1)
 				{
-					ac = aux.getAcademia(pos);
+					Academia ac = aux.getAcademia(pos);
 					for(int c = 0; c<ac.getNumExperiencia(); c++)
 					{
 						ExperienciaEducativa ee  = ac.getEE(c);
 						for(int d = 0 ; d<ee.getNumCurso(); d++)
 						{
-							String nom = "";
-							for(int h = 0; h<ee.getCurso(d).getNumAlumno(); h++)
+							Curso cursito = ee.getCurso(d);
+							for(int er = 0; er<cursito.getNumAlumno(); er++)
 							{
-								nom = ee.getCurso(d).getAlumno(h);
-								int xpos = aux.findEstudiante(nom);
-								if( xpos != -1)
-									ans += aux.getEstudiante(xpos);
+								int xpos = aux.findEstudiante(cursito.getAlumno(er));
+								if(xpos != -1)
+									ans += aux.getEstudiante(xpos);					
 							}
 						}
 					}
