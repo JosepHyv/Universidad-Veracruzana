@@ -73,14 +73,53 @@ public class JBusqueda extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			String acad=tfAcademia.getText();
 			String ans = "";
-			/*
+		
 			/// Aqui va a Comenzar lo mio uwu 
-
-			if( this.promesa.equals("Academias"))
+			//System.out.println("ESTOY PROBANDO "+ (Functional)getNodo());
+			if( getPromesa().equals("Experiencia Educativa"))
 			{
-				for(int c = 0; c<(Functional)this.nodo.sizeAcademia(); c++)
-					ans += (Functional)this.nodo.getAcademia(c);
-			}*/
+				Functional aux = (Functional)getNodo();
+				for(int c = 0; c<aux.sizeAcademia(); c++)
+				{
+					Academia temp = aux.getAcademia(c);
+					int pos = temp.findExperiencia(acad);
+					if( pos != -1)
+					{
+						ExperienciaEducativa  meh = temp.getEE(pos);
+						ans = meh.toString();
+						break;
+					}
+					else ans = "No Existe " + acad;
+				}
+			}
+			else if(getPromesa().equals("Estudiantes de una Academia") )
+			{
+				Functional aux = (Functional)getNodo();
+				int pos = aux.findAcademia(acad);
+				Academia ac;
+				if( pos != -1)
+				{
+					ac = aux.getAcademia(pos);
+					for(int c = 0; c<ac.getNumExperiencia(); c++)
+					{
+						ExperienciaEducativa ee  = ac.getEE(c);
+						for(int d = 0 ; d<ee.getNumCurso(); d++)
+						{
+							String nom = "";
+							for(int h = 0; h<ee.getCurso(d).getNumAlumno(); h++)
+							{
+								nom = ee.getCurso(d).getAlumno(h);
+								int xpos = aux.findEstudiante(nom);
+								if( xpos != -1)
+									ans += aux.getEstudiante(xpos);
+							}
+						}
+					}
+				}
+				else
+					ans = "No Existe " + acad;
+
+			}
 
 
 			/// Aclaro, veremos como sale, la noche ya esta avanzada
