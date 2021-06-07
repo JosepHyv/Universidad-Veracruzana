@@ -223,7 +223,7 @@ public class Main
 			else if( op == 2)
 			{
 				clearScreen();
-				System.out.println(padre);
+				//System.out.println(padre);
 				//IMenu menu = new IMenu();
 				Ventana consulta = new Ventana(padre);
 			}
