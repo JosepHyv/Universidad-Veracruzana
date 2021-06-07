@@ -26,6 +26,7 @@ public class Academia  extends Template  {
 	{
 		return this.numExperiencia;
 	}
+	
 	public String getNombre(){
 		return nombre;
 	}

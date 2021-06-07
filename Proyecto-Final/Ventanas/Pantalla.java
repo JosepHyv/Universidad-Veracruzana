@@ -1,3 +1,9 @@
+/*
+
+Pantalla muestra el contenido de una clase, despues de la busqueda
+o en su defectoo muestra el string de todo un nodo Functional
+*/ 
+
 package Ventanas;
 
 import engine.*;
@@ -21,7 +27,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 public class Pantalla extends JFrame{
-		public Pantalla(String a, String b, String c ){
+	//private Template nodo;
+		public Pantalla(String a, String b, String c ){ //, Template d ){
 			super(a);
 			setLayout(new BorderLayout());
 			JPanel pNorte=_crearPNorte(b);
@@ -29,6 +36,11 @@ public class Pantalla extends JFrame{
 			JPanel pCentro=_crearPCentro(c);
 			add(pCentro, BorderLayout.CENTER);
 			//addWindowListener(new EscuchaVentana2());
+
+			/// Agrego mis cosillas 
+
+		//	this.nodo = d;
+			// finalizan mis cosillas 
 			setSize(500, 500);
 			setVisible(true);
 		}

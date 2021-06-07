@@ -25,8 +25,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 public class Ventana extends JFrame {
 	private JButton b1, b2, b3, b4, b5;
-	
-	public Ventana() {
+	private Template nodo;
+	public Ventana(Template variable) {
 		super("Consultas");
 		setLayout(new FlowLayout());
 		b1 = new JButton("Academias");
@@ -43,10 +43,25 @@ public class Ventana extends JFrame {
 		add(b4);
 		/*b5 = new JButton("Estudiante");
 		add(b5);*/
+
+
+		/// Aqui comienzan mis modificaciones :3 
+		this.nodo = variable;
+
+
+		/// aqui las vou a  dejar 
 		addWindowListener(new EscuchaVentana());
 		setSize(400,150);
 		setVisible(true);
 	}
+
+	/// más modificaciones
+	public Template getNodo()
+	{
+		return this.nodo;
+	}
+
+	/// modificacion mia
 	class EscuchaVentana implements WindowListener{
 		public void windowClosing(WindowEvent e){
 			//cerrar la ventana y finalizar el programa
@@ -64,7 +79,7 @@ public class Ventana extends JFrame {
 	
 	class EscuchaEE implements ActionListener{
 		public void actionPerformed(ActionEvent x){
-			JBusqueda ventanita=new JBusqueda("Experiencia Educativa", "Academia");
+			JBusqueda ventanita=new JBusqueda("Experiencia Educativa", "Academia", getNodo());
 		}
 	}
 
@@ -72,7 +87,7 @@ public class Ventana extends JFrame {
 	{
 		public void actionPerformed(ActionEvent x )
 		{
-			JBusqueda ventana = new JBusqueda("Profesores", "Academia");
+			JBusqueda ventana = new JBusqueda("Profesores", "Academia", getNodo());
 		}
 	}
 
@@ -81,7 +96,11 @@ public class Ventana extends JFrame {
 		public void actionPerformed(ActionEvent x)
 		{
 			//Experiencia ventana = new Experiencia("Academias", "Esto tendria que ser una Academiala clase" );
-			Pantalla ventana = new Pantalla("","este es el norte", "aqui debe de haber una clase");
+			Functional aux = (Functional)getNodo();
+			String ans = "";
+			for(int c = 0 ; c<aux.sizeAcademia(); c++)
+				ans += aux.getAcademia(c);
+			Pantalla ventana = new Pantalla("","este es el norte", ans);
 		}
 	}
 
@@ -89,7 +108,7 @@ public class Ventana extends JFrame {
 	{
 		public void actionPerformed(ActionEvent x)
 		{
-			JBusqueda ventana = new JBusqueda("Estudiantes", "Academia");
+			JBusqueda ventana = new JBusqueda("Estudiantes", "Academia", getNodo());
 		}
 	}
 

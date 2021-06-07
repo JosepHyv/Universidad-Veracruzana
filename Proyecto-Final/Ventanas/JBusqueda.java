@@ -23,14 +23,21 @@ import javax.swing.JOptionPane;
 public class JBusqueda extends JFrame{
 	private JButton bBuscar, bCancelar;
 	private JTextField tfAcademia;
-	public JBusqueda(String a, String b ){
+	private Template nodo;
+	private String promesa = "";
+	public JBusqueda(String a, String b, Template c){
 		super(a);
+		this.promesa = a;
 		setLayout(new BorderLayout());
 		JPanel pCenter=_crearPCenter(b);
 		add(pCenter, BorderLayout.CENTER);
 		JPanel pSouth=_crearPSouth();
 		add(pSouth, BorderLayout.SOUTH);
 		addWindowListener(new EscuchaVentana());
+		/// Mis modificaciones comienzan aqui
+		this.nodo = c;
+		// aqui van a acabar si hay algo mal
+		/// la noche era muy avanzada jeje 
 		setSize(500, 150);
 		setVisible(true);
 	}
@@ -51,21 +58,37 @@ public class JBusqueda extends JFrame{
 		p.add(bCancelar);
 		return p;
 	}
-	
-	public String tomaTexto()
+
+	public  String getPromesa()
 	{
-		String ans = this.tfAcademia.getText();
-		return ans;
+		return this.promesa;
 	}
+	public  Template getNodo()
+	{
+		return this.nodo;
+	}
+
 
 	class EscuchaBuscar implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			String acad=tfAcademia.getText();
+			String ans = "";
+			/*
+			/// Aqui va a Comenzar lo mio uwu 
+
+			if( this.promesa.equals("Academias"))
+			{
+				for(int c = 0; c<(Functional)this.nodo.sizeAcademia(); c++)
+					ans += (Functional)this.nodo.getAcademia(c);
+			}*/
+
+
+			/// Aclaro, veremos como sale, la noche ya esta avanzada
 			//Solo imprimi para ver si funcionaba el guardado en la variable xd
 			//System.out.println(acad);
 			//String cadena="Clave \t\tNombre \t\tCreditos\n1234\t\tProgramacion\t\t15";
 			//JOptionPane.showMessageDialog(null, cadena);
-			Pantalla exp=new Pantalla("Experiencia Educativa",acad, "Esto debe ser una clase");
+			Pantalla exp=new Pantalla(getPromesa(),acad, ans);
 			//tf.requestFocus();
 		}
 	}
