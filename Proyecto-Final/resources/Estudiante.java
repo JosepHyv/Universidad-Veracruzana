@@ -72,6 +72,28 @@ public class Estudiante extends Template  {
 		this.numCurso = a;
 	}
 
+	public int findCurso(String a )
+	{
+		int pos = -1;
+		for(int c = 0 ; c<this.numCurso; c++)
+			if( a.equalsIgnoreCase(this.curso[c]))
+			{
+				pos = c;
+				break;
+			}
+		return pos;
+	}
+
+	public void removeCurso(String a )
+	{
+		int pos = findCurso(a);
+		if( pos == -1)
+			return;
+		for(int c = 0 ; c<this.numCurso-1; c++)
+			this.curso[c] = this.curso[c+1];
+		this.numCurso--;
+		return;
+	}
 
 	//// =========== Estudiante tiene toString ============
 	public String toString()

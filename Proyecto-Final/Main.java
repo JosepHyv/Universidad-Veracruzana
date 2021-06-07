@@ -231,7 +231,9 @@ public class Main
 			}
 			else if( op == 3 )
 			{
-				///ajdo
+				///Modificar 
+
+
 			}
 			else if(op == 4)
 			{
@@ -287,19 +289,101 @@ public class Main
 				{
 					/// Eliminar un Profesor
 					clearScreen();
+					System.out.println("Ingresa el Nombre del Profesor");
+					String en = sc.next();
+					int pos = padre.findProfesor(en);
+					if( pos != -1)
+					{
+						padre.remove(new Profesor(en));
+						Academia ac = padre.getAcademia( pos );
+						ac.setCoordinador(new Profesor() ) ;
+						int tam = ac.getNumExperiencia();
+						for(int c = 0; c<tam; c++)
+						{
+							ExperienciaEducativa exp  = ac.getEE(c);
+							for(int d = 0 ; d<exp.getNumCurso(); d++)
+							{
+								String aux = (exp.getCurso(d)).getDocente();
+								if( en.equalsIgnoreCase(aux))
+								{
+									(exp.getCurso(d)).setDocente("");
+								}
+							}
+						}
+
+
+					}
+					else System.out.println("No existe el Profesor");
+
 				}
 				else if( opcion == 3)
 				{
 					// Eliminar una Experiencia
 					clearScreen();
+					System.out.println("Ingresa el Nombre de la Experiencia");
+					String en = sc.next();
+					for(int c = 0 ; c<padre.sizeAcademia(); c++)
+						(padre.getAcademia(c)).removeExperiencia(en);
+
 				}
 				else if( opcion == 4)
 				{
 					// Eliminar un Alumno
+					System.out.println("Ingresa el nombre del Alumno");
+					String en = sc.next();
+					int pos = padre.findEstudiante(en);
+					if( pos != -1)
+					{
+						Academia ac = padre.getAcademia(pos);
+						padre.remove(new Estudiante(en));
+						for(int c = 0 ; c<ac.getNumExperiencia(); c++)
+						{
+							ExperienciaEducativa ep = ac.getEE(c);
+							int tam = ep.getNumCurso();
+							for(int d = 0 ; d<tam; d++)
+							{
+								Curso cs = ep.getCurso(d);
+								cs.removeAlumno(en);
+								for(int h = 0 ; h<cs.getNumAlumno(); h++)
+								{
+									
+									padre.remove(new Estudiante(cs.getAlumno(h)));
+									int xpos = padre.findEstudiante(cs.getAlumno(h));
+									if( xpos != -1)
+										padre.remove(new Estudiante(cs.getAlumno(h)));
+								}
+
+							}
+						}
+
+					}
+					else System.out.println("No existe el Estudiante");
+
 				}
 				else if( opcion == 5)
 				{
 					// Eliminar un Curso
+					System.out.println("Ingresa el nombre del Curso");
+					String en = sc.next();
+					
+					for(int c = 0 ; c<padre.sizeAcademia(); c++)
+					{
+						int tam = (padre.getAcademia(c)).getNumExperiencia();
+						for(int d = 0 ; d<tam; d++)
+						{
+							int tam2 = ((padre.getAcademia(c)).getEE(d)).getNumCurso();
+							for(int h = 0 ; h<tam2; h++ )
+							{
+								Curso cs = ((padre.getAcademia(c)).getEE(d)).getCurso(h);
+								for(int i = 0 ; i<cs.getNumAlumno(); i++)
+								{
+
+								}
+							}
+							((padre.getAcademia(c)).getEE(d)).removeCurso(en);
+						}
+					}
+
 				}
 
 			}

@@ -60,6 +60,16 @@ public class Academia  extends Template  {
 		return ans;
 	}
 
+	public void removeExperiencia(String a)
+	{
+		int pos = findExperiencia(a);
+		if( pos == -1)
+			return;
+		for(int c = pos; c<this.numExperiencia-1; c++)
+			this.ee[c] = this.ee[c+1];
+		this.numExperiencia--;
+	}
+
 	public ExperienciaEducativa getEE(int i){
 		return ee[i];
 	}

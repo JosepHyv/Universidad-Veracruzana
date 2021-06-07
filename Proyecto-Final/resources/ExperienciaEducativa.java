@@ -72,6 +72,16 @@ public class ExperienciaEducativa extends Template  {
 			}
 		return ans;
 	}
+	public void removeCurso(String a)
+	{
+		int pos = findCurso(a);
+		if( pos == -1)
+			return;
+		for(int c = pos; c<this.numCurso-1; c++)
+			this.curso[c] = this.curso[c+1];
+		this.numCurso--;
+		return;
+	}
 
 	// added get curso 
 	public Curso getCurso(int a)

@@ -30,6 +30,10 @@ public class Curso extends Template  {
 	{
 		this.bloque = a;
 	}
+	public void setDocente(String a)
+	{
+		this.docente = a;
+	}
 
 	public void setNombre(String a)
 	{
@@ -79,6 +83,28 @@ public class Curso extends Template  {
 			System.err.println("No hay capacidad para más alumnos");
 	}
 	
+	public int findAlumno(String a)
+	{
+		int pos = -1;
+		for(int c = 0 ; c<this.numAlumno; c++)
+			if( a.equalsIgnoreCase(this.alumno[c]))
+			{
+				pos = c;
+				break;
+			}
+		return pos;
+	}
+
+	public void removeAlumno(String a)
+	{
+		int pos = findAlumno(a);
+		if( pos == -1)
+			return;
+		for(int c = pos; c<this.numAlumno-1; c++)
+			this.alumno[c] = this.alumno[c+1];
+		this.numAlumno--;
+		return;
+	}
 
 	public int getNumAlumno(){
 		return numAlumno;
