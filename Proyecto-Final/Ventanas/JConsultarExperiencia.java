@@ -1,4 +1,5 @@
 package Ventanas;
+/// Backend
 
 import engine.*;
 import resources.*;
@@ -22,10 +23,10 @@ import javax.swing.JOptionPane;
 public class JConsultarExperiencia extends JFrame{
 	private JButton bBuscar, bCancelar;
 	private JTextField tfAcademia;
-	public JConsultarExperiencia(){
-		super("Consulta de Experiencias");
+	public JConsultarExperiencia(String a, String b ){
+		super(a);
 		setLayout(new BorderLayout());
-		JPanel pCenter=_crearPCenter();
+		JPanel pCenter=_crearPCenter(b);
 		add(pCenter, BorderLayout.CENTER);
 		JPanel pSouth=_crearPSouth();
 		add(pSouth, BorderLayout.SOUTH);
@@ -33,9 +34,9 @@ public class JConsultarExperiencia extends JFrame{
 		setSize(500, 150);
 		setVisible(true);
 	}
-	private JPanel _crearPCenter(){
+	private JPanel _crearPCenter(String b){
 		JPanel p=new JPanel(new FlowLayout());
-		p.add(new JLabel("Academia:"));
+		p.add(new JLabel(b + ": "));
 		tfAcademia=new JTextField(20);
 		p.add(tfAcademia);
 		return p;
@@ -57,7 +58,7 @@ public class JConsultarExperiencia extends JFrame{
 			//System.out.println(acad);
 			//String cadena="Clave \t\tNombre \t\tCreditos\n1234\t\tProgramacion\t\t15";
 			//JOptionPane.showMessageDialog(null, cadena);
-			Experiencia exp=new Experiencia(acad);
+			Pantalla exp=new Pantalla("Experiencia Educativa",acad, "Esto debe ser una clase");
 			//tf.requestFocus();
 		}
 	}
@@ -90,14 +91,14 @@ public class JConsultarExperiencia extends JFrame{
 	}
 	*/
 	public class Experiencia extends JFrame{
-		public Experiencia(String academia){
-			super("Experiencias Educativas");
+		public Experiencia(String a, String b){
+			super(a);
 			setLayout(new BorderLayout());
-			JPanel pNorte=_crearPNorte(academia);
+			JPanel pNorte=_crearPNorte(b);
 			add(pNorte, BorderLayout.NORTH);
 			JPanel pCentro=_crearPCentro();
 			add(pCentro, BorderLayout.CENTER);
-			addWindowListener(new EscuchaVentana2());
+			//addWindowListener(new EscuchaVentana2());
 			setSize(500, 500);
 			setVisible(true);
 		}
@@ -110,9 +111,9 @@ public class JConsultarExperiencia extends JFrame{
 		JTextArea ta=new JTextArea(cad);
 		ta.setEditable(false);
 		p.add(ta);
-		JButton bRegresar=new JButton("Regresar");
+		/*JButton bRegresar=new JButton("Regresar");
 		bRegresar.addActionListener(new EscuchaRegresar());
-		p.add(bRegresar);
+		p.add(bRegresar);*/
 		return p;		
 	}
 
@@ -121,14 +122,13 @@ public class JConsultarExperiencia extends JFrame{
 		p.add(new JLabel(acad));
 		return p;
 	}
-	
+	/*
 	class EscuchaRegresar implements ActionListener{
 		public void actionPerformed(ActionEvent e2){
-			//addWindowListener(new EscuchaVentana2());	
+			addWindowListener(new EscuchaVentana2());	
 			tfAcademia.requestFocus();
-			tfAcademia.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 		}
-	}
+	}*/
 	class EscuchaVentana2 implements WindowListener{
 		public void windowClosing(WindowEvent e){
 			//cerrar la ventana y finalizar el programa

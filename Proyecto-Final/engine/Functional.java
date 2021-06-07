@@ -22,6 +22,15 @@ public class Functional extends Template
 
 	}
 
+	public String BuscaAcademiaProfesor(String a )
+	{
+		String ans = "";
+		for(int c = 0 ; c<this.it2; c++)
+			if( a.equalsIgnoreCase(this.teacher[c].getAcademia().getNombre()))
+				ans += this.teacher[c];
+		return ans.length() > 0 ? ans : "No hay Profesores";
+
+	}
 	public int findAcademia(String a)
 	{	
 		for(int c = 0 ; c<this.it1; c++)

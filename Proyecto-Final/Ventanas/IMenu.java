@@ -4,7 +4,6 @@ package Ventanas;
 import engine.*;
 import resources.*;
 
-//// parte de la GUI 
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Button;
@@ -85,9 +84,9 @@ public IMenu()
 			Ventana venti=new Ventana();
 		}
 	}
-public static void main(String[] args)
+/*public static void main(String[] args)
  {
  	IMenu v1 = new IMenu(); 
- }
+ }*/
 
 }
