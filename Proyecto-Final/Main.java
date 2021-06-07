@@ -59,6 +59,7 @@ public class Main
 				}
 				else
 				{
+					clearScreen();
 					int opcion = 0;
 					boolean okidoki = true;
 					while(okidoki)
@@ -82,6 +83,7 @@ public class Main
 						
 					if( opcion == 1 )
 					{
+						clearScreen();
 						Academia a = creaAcademia();
 						Profesor p = a.getCoordinador();
 						p.addAcademia(a);
@@ -103,6 +105,7 @@ public class Main
 					}
 					else if( opcion == 2 )
 					{
+						clearScreen();
 						/// Asignar Experiencias a una Academia
 						System.out.println("Ingresa el Nombre de la Academia");
 						String ea = sc.next();
@@ -117,6 +120,7 @@ public class Main
 					}
 					else if ( opcion == 3 )
 					{
+						clearScreen();
 						// Asignar Cursos a Experiencias
 						//System.out.println("ME MUERO");
 						boolean mensaje = true;
@@ -143,6 +147,7 @@ public class Main
 					}
 					else if ( opcion == 4 )
 					{
+						clearScreen();
 						boolean mensaje = true;
 						/// Asignar un Alumno a un Curso
 						System.out.println("Ingresa el Nombre del Curso");
@@ -173,6 +178,7 @@ public class Main
 					}
 					else if ( opcion == 5)
 					{
+						clearScreen();
 						// Asignar Profesor a un Curso
 						boolean mensaje = true;
 						System.out.println("Ingresa el Nombre del Curso");
@@ -204,6 +210,10 @@ public class Main
 						}
 
 					}
+
+					/// esta linea es solo para esperar a que leeas el mensaje 
+
+					pause();
 
 
 
@@ -324,7 +334,14 @@ public class Main
 	}	
 
 
-
+	/// Funciones para el Menu 
+	public static void pause()
+	{
+		System.out.println("Presiona una Tecla...");
+		Scanner sc = new Scanner( System.in);
+		String entrada = sc.nextLine();
+		return;
+	}
 
 
 	public static void clearScreen() 
