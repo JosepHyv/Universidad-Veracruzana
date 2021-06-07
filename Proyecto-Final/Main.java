@@ -377,7 +377,9 @@ public class Main
 								Curso cs = ((padre.getAcademia(c)).getEE(d)).getCurso(h);
 								for(int i = 0 ; i<cs.getNumAlumno(); i++)
 								{
-
+										int xpos = padre.findEstudiante(cs.getAlumno(i));
+										if(xpos != -1)
+											(padre.getEstudiante(xpos)).removeCurso(en);
 								}
 							}
 							((padre.getAcademia(c)).getEE(d)).removeCurso(en);
