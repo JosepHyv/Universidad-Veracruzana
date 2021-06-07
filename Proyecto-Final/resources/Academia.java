@@ -22,7 +22,10 @@ public class Academia  extends Template  {
 		this.nombre = nomb;
 	}
 
-
+	public int getNumExperiencia()
+	{
+		return this.numExperiencia;
+	}
 	public String getNombre(){
 		return nombre;
 	}

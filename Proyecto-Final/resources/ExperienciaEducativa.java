@@ -61,6 +61,18 @@ public class ExperienciaEducativa extends Template  {
 		
 	}
 
+	public int findCurso(String a )
+	{
+		int ans = -1;
+		for(int c = 0 ; c<this.numCurso; c++)
+			if( a.equalsIgnoreCase(this.curso[c].getNombre()))
+			{
+				ans = c;
+				break;
+			}
+		return ans;
+	}
+
 	// added get curso 
 	public Curso getCurso(int a)
 	{

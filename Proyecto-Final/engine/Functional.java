@@ -227,4 +227,9 @@ public class Functional extends Template
 		return res;
 	}
 
+	public boolean empty()
+	{
+		return !(this.it1 > 0  || this.it2 > 0  || this.it3 > 0 );
+	}
+
 }
