@@ -17,9 +17,9 @@ public class Main
 		Scanner sc = new Scanner(System.in);
 //		IMenu menu = new IMenu();
 		boolean sigue = true;
-		System.out.println("\tMenu\n");
 		while( sigue )
 		{
+			System.out.println("\tMenu\n");
 			System.out.println("1) Agregar");
 			System.out.println("2) Consultar (GUI disponible)");
 			System.out.println("3) Modificar");
@@ -104,9 +104,8 @@ public class Main
 					else if( opcion == 2 )
 					{
 						/// Asignar Experiencias a una Academia
-						String ea = "";
 						System.out.println("Ingresa el Nombre de la Academia");
-						ea = sc.nextLine();
+						String ea = sc.next();
 						int pos = padre.findAcademia(ea);
 						if( pos == -1)
 							System.out.println("No se encontro la Academia");
@@ -119,11 +118,11 @@ public class Main
 					else if ( opcion == 3 )
 					{
 						// Asignar Cursos a Experiencias
-						System.out.println("ME MUERO");
+						//System.out.println("ME MUERO");
 						boolean mensaje = true;
-						String ea = "";
 						System.out.println("Ingresa el Nombre de la Experiencia Educativa");
-						ea = sc.nextLine();
+						String ea = sc.next();
+						//ea = sc.nextLine();
 						for(int c = 0; c<padre.sizeAcademia(); c++)
 						{
 							int pos =  padre.getAcademia(c).findExperiencia(ea);
@@ -146,9 +145,8 @@ public class Main
 					{
 						boolean mensaje = true;
 						/// Asignar un Alumno a un Curso
-						String ea = "";
 						System.out.println("Ingresa el Nombre del Curso");
-						ea = sc.nextLine();
+						String ea = sc.next();
 						for(int c = 0; c<padre.sizeAcademia(); c++)
 						{
 							for(int d = 0 ; d<padre.getAcademia(c).getNumExperiencia(); d++)
@@ -156,13 +154,10 @@ public class Main
 								int pos = padre.getAcademia(c).getEE(d).findCurso(ea);
 								if( pos != -1)
 								{
-									System.out.println("Ingresa el Nombre del Estudiante");
-									String nombre = sc.nextLine();
-									int pEstu = padre.findEstudiante(nombre);
-									Estudiante es = new Estudiante();
+									Estudiante es = creaEstudiante();
+									int pEstu = padre.findEstudiante(es.getNombre());
 									if( pEstu != -1)
 										es = padre.getEstudiante(pEstu);
-									else  es = creaEstudiante();
 									padre.getAcademia(c).getEE(d).getCurso(pos).addEstudiante(es.getNombre());
 									padre.insert(es);
 									mensaje = false;
@@ -180,9 +175,8 @@ public class Main
 					{
 						// Asignar Profesor a un Curso
 						boolean mensaje = true;
-						String ea = "";
 						System.out.println("Ingresa el Nombre del Curso");
-						ea = sc.nextLine();
+						String ea = sc.next();
 						for(int c = 0 ; c<padre.sizeAcademia(); c++) 
 						{
 							for(int d = 0 ; d<padre.getAcademia(c).getNumExperiencia(); d++)
@@ -219,8 +213,8 @@ public class Main
 			else if( op == 2)
 			{
 				System.out.println(padre);
-				IMenu menu = new IMenu();
-
+				//IMenu menu = new IMenu();
+				Ventana consulta = new Ventana();
 			}
 			else if( op == 3 )
 			{
