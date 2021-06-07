@@ -64,7 +64,7 @@ public class Ventana extends JFrame {
 	
 	class EscuchaEE implements ActionListener{
 		public void actionPerformed(ActionEvent x){
-			JConsultarExperiencia ventanita=new JConsultarExperiencia("Experiencia Educativa", "Academia");
+			JBusqueda ventanita=new JBusqueda("Experiencia Educativa", "Academia");
 		}
 	}
 
@@ -72,7 +72,7 @@ public class Ventana extends JFrame {
 	{
 		public void actionPerformed(ActionEvent x )
 		{
-			JConsultarExperiencia ventana = new JConsultarExperiencia("Profesores", "Academia");
+			JBusqueda ventana = new JBusqueda("Profesores", "Academia");
 		}
 	}
 
@@ -89,7 +89,7 @@ public class Ventana extends JFrame {
 	{
 		public void actionPerformed(ActionEvent x)
 		{
-			JConsultarExperiencia ventana = new JConsultarExperiencia("Estudiantes", "Academia");
+			JBusqueda ventana = new JBusqueda("Estudiantes", "Academia");
 		}
 	}
 

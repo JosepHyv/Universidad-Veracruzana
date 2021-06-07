@@ -20,10 +20,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
-public class JConsultarExperiencia extends JFrame{
+public class JBusqueda extends JFrame{
 	private JButton bBuscar, bCancelar;
 	private JTextField tfAcademia;
-	public JConsultarExperiencia(String a, String b ){
+	public JBusqueda(String a, String b ){
 		super(a);
 		setLayout(new BorderLayout());
 		JPanel pCenter=_crearPCenter(b);
@@ -51,6 +51,13 @@ public class JConsultarExperiencia extends JFrame{
 		p.add(bCancelar);
 		return p;
 	}
+	
+	public String tomaTexto()
+	{
+		String ans = this.tfAcademia.getText();
+		return ans;
+	}
+
 	class EscuchaBuscar implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			String acad=tfAcademia.getText();
@@ -84,63 +91,5 @@ public class JConsultarExperiencia extends JFrame{
 		public void windowOpened(WindowEvent e){}
 	}
 
-//Segunda Ventana
-	/*
-	public static void main(String[] args){
-		JConsultarExperiencia e=new JConsultarExperiencia();
-	}
-	*/
-	public class Experiencia extends JFrame{
-		public Experiencia(String a, String b){
-			super(a);
-			setLayout(new BorderLayout());
-			JPanel pNorte=_crearPNorte(b);
-			add(pNorte, BorderLayout.NORTH);
-			JPanel pCentro=_crearPCentro();
-			add(pCentro, BorderLayout.CENTER);
-			//addWindowListener(new EscuchaVentana2());
-			setSize(500, 500);
-			setVisible(true);
-		}
-	}
 
-	private JPanel _crearPCentro(){
-		JPanel p=new JPanel();
-		//cad sería la cadena de toString de academia
-		String cad="Clave \t\tNombre \t\tCreditos\n\n1234\t\tProgramacion\t\t15\n2536\t\tBase de Datos\t\t8";
-		JTextArea ta=new JTextArea(cad);
-		ta.setEditable(false);
-		p.add(ta);
-		/*JButton bRegresar=new JButton("Regresar");
-		bRegresar.addActionListener(new EscuchaRegresar());
-		p.add(bRegresar);*/
-		return p;		
-	}
-
-	private JPanel _crearPNorte(String acad){
-		JPanel p=new JPanel();
-		p.add(new JLabel(acad));
-		return p;
-	}
-	/*
-	class EscuchaRegresar implements ActionListener{
-		public void actionPerformed(ActionEvent e2){
-			addWindowListener(new EscuchaVentana2());	
-			tfAcademia.requestFocus();
-		}
-	}*/
-	class EscuchaVentana2 implements WindowListener{
-		public void windowClosing(WindowEvent e){
-			//cerrar la ventana y finalizar el programa
-			setVisible(false);
-			dispose();
-			//System.exit(0);
-		}
-		public void windowActivated(WindowEvent e){}
-		public void windowClosed(WindowEvent e){}
-		public void windowDeactivated(WindowEvent e){}
-		public void windowDeiconified(WindowEvent e){}
-		public void windowIconified(WindowEvent e){}
-		public void windowOpened(WindowEvent e){}
-	}
 }

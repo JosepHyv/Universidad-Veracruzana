@@ -24,6 +24,7 @@ public class IMenu extends Frame
 private Button b1,b2,b3,b4;
 private Label l;
 
+
 public IMenu()
 {
 
@@ -44,7 +45,7 @@ public IMenu()
 		add(b1);
 
 		b2=new Button("Consultar");
-		b2.addActionListener(new EscuchaConsulta());
+		b2.	addActionListener(new EscuchaConsulta());
 		add(b2);
 
 		b3=new Button("Modificar");
@@ -84,9 +85,9 @@ public IMenu()
 			Ventana venti=new Ventana();
 		}
 	}
-/*public static void main(String[] args)
+public static void main(String[] args)
  {
  	IMenu v1 = new IMenu(); 
- }*/
+ }
 
 }

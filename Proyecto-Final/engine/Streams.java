@@ -24,13 +24,12 @@ public class Streams// extends Template
 	{
 		if( a instanceof Functional)
 		{
-			
-
 			try
 			{
 				FileInputStream aux = new FileInputStream("Functional.obj");
 				ObjectInputStream entrada = new ObjectInputStream( aux );	
 				a = (Functional)entrada.readObject();
+				entrada.close();
 			}
 			catch(FileNotFoundException e )
 			{
@@ -38,7 +37,7 @@ public class Streams// extends Template
 			}
 			catch(IOException e)
 			{
-				System.err.println("Error De Entradas y Salidas:\n" + e.getMessage());
+				//System.err.println("Error De Entradas y Salidas:\n" + e.getMessage());
 			}
 			catch(ClassNotFoundException e)
 			{
