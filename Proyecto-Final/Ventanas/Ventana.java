@@ -80,7 +80,7 @@ public class Ventana extends JFrame {
 	
 	class EscuchaEE implements ActionListener{
 		public void actionPerformed(ActionEvent x){
-			JBusqueda ventanita=new JBusqueda("Experiencia Educativa", "Academia", getNodo());
+			JBusqueda ventanita=new JBusqueda("Experiencia Educativa", "Experiencia", getNodo());
 		}
 	}
 
