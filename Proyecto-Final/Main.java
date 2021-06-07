@@ -26,6 +26,7 @@ public class Main
 			System.out.println("4) Eliminar");
 			System.out.println("5) Salir");
 			int op = 0;
+			//System.out.println(op);
 			op = sc.nextInt();
 			if( op < 1 || op > 5 )
 			{
@@ -160,11 +161,26 @@ public class Main
 								int pos = padre.getAcademia(c).getEE(d).findCurso(ea);
 								if( pos != -1)
 								{
-									Estudiante es = creaEstudiante();
+									System.out.println("Ingresa el nombre del Estudiante");
+									sc.nextLine();
+									String nom = sc.nextLine();
+									Estudiante es = new Estudiante(nom);// creaEstudiante();
 									int pEstu = padre.findEstudiante(es.getNombre());
 									if( pEstu != -1)
+									{
+										(padre.getEstudiante(pEstu)).setNumCreditos((padre.getEstudiante(pEstu)).getNumCreditos() + (((padre.getAcademia(c)).getEE(d)).getTotalDeCreditos()) );
 										es = padre.getEstudiante(pEstu);
-									padre.getAcademia(c).getEE(d).getCurso(pos).addEstudiante(es.getNombre());
+									}
+									else
+									{
+										System.out.println("Ingresa la Matricula de " + es.getNombre());
+										String mati = sc.nextLine();
+										es.addCurso(ea);
+										es.setNumCreditos(es.getNumCreditos() + (((padre.getAcademia(c)).getEE(d)).getTotalDeCreditos()));
+										es.setMatricula(mati);
+
+									} 
+									(((padre.getAcademia(c)).getEE(d)).getCurso(pos)).addEstudiante(es.getNombre());
 									padre.insert(es);
 									mensaje = false;
 									break;
@@ -224,7 +240,7 @@ public class Main
 			else if( op == 2)
 			{
 				clearScreen();
-				System.out.println(padre);
+				//System.out.println(padre);
 				//IMenu menu = new IMenu();
 				Ventana consulta = new Ventana(padre);
 				
@@ -240,7 +256,8 @@ public class Main
 				/// elimino 
 				clearScreen();
 				int opcion = 0;
-				while( (opcion >= 6 || opcion < 1) )
+				boolean ok = true;	
+				while( ok )
 				{
 					System.out.println("Selecciona la Opcion");
 					System.out.println("1) Eliminar una Academia");
@@ -250,13 +267,17 @@ public class Main
 					System.out.println("5) Eliminar un Curso");
 
 					opcion = sc.nextInt();
+					if( opcion >=1  && opcion <= 6 )
+						ok = false;
+
 				}
 
 				if( opcion == 1 )
 				{
 					clearScreen();
 					System.out.println("Ingresa el Nombre de la Academia");
-					String en = sc.next();
+					sc.nextLine();
+					String en = sc.nextLine();
 					int pos = padre.findAcademia(en);
 					if( pos != -1)
 					{
@@ -290,7 +311,8 @@ public class Main
 					/// Eliminar un Profesor
 					clearScreen();
 					System.out.println("Ingresa el Nombre del Profesor");
-					String en = sc.next();
+					sc.nextLine();
+					String en = sc.nextLine();
 					int pos = padre.findProfesor(en);
 					if( pos != -1)
 					{
@@ -321,7 +343,8 @@ public class Main
 					// Eliminar una Experiencia
 					clearScreen();
 					System.out.println("Ingresa el Nombre de la Experiencia");
-					String en = sc.next();
+					sc.nextLine();
+					String en = sc.nextLine();
 					for(int c = 0 ; c<padre.sizeAcademia(); c++)
 						(padre.getAcademia(c)).removeExperiencia(en);
 
@@ -330,29 +353,40 @@ public class Main
 				{
 					// Eliminar un Alumno
 					System.out.println("Ingresa el nombre del Alumno");
-					String en = sc.next();
+					sc.nextLine();
+					String en = sc.nextLine();
 					int pos = padre.findEstudiante(en);
 					if( pos != -1)
 					{
-						Academia ac = padre.getAcademia(pos);
 						padre.remove(new Estudiante(en));
-						for(int c = 0 ; c<ac.getNumExperiencia(); c++)
+						for(int x = 0 ; x < padre.sizeAcademia(); x++)
 						{
-							ExperienciaEducativa ep = ac.getEE(c);
-							int tam = ep.getNumCurso();
-							for(int d = 0 ; d<tam; d++)
-							{
-								Curso cs = ep.getCurso(d);
-								cs.removeAlumno(en);
-								for(int h = 0 ; h<cs.getNumAlumno(); h++)
-								{
-									
-									padre.remove(new Estudiante(cs.getAlumno(h)));
-									int xpos = padre.findEstudiante(cs.getAlumno(h));
-									if( xpos != -1)
-										padre.remove(new Estudiante(cs.getAlumno(h)));
-								}
 
+							Academia ac = padre.getAcademia(x);
+							//boolean oki = true;
+							for(int c = 0 ; c<ac.getNumExperiencia(); c++)
+							{
+								//if( oki == false) break;
+								ExperienciaEducativa ep = ac.getEE(c);
+								int tam = ep.getNumCurso();
+								for(int d = 0 ; d<tam; d++)
+								{
+									Curso cs = ep.getCurso(d);
+									cs.removeAlumno(en);
+									/*for(int h = 0 ; h<cs.getNumAlumno(); h++)
+									{
+										
+										padre.remove(new Estudiante(cs.getAlumno(h)));
+										int xpos = padre.findEstudiante(cs.getAlumno(h));
+										if( xpos != -1)
+										{
+											oki = false;
+											padre.remove(new Estudiante(cs.getAlumno(h)));
+											break;
+										}
+									}*/
+
+								}
 							}
 						}
 
@@ -364,7 +398,8 @@ public class Main
 				{
 					// Eliminar un Curso
 					System.out.println("Ingresa el nombre del Curso");
-					String en = sc.next();
+					sc.nextLine();
+					String en = sc.nextLine();
 					
 					for(int c = 0 ; c<padre.sizeAcademia(); c++)
 					{
@@ -387,6 +422,7 @@ public class Main
 					}
 
 				}
+				pause();
 
 			}
 			else if( op == 5 )

@@ -26,6 +26,9 @@ public class Streams// extends Template
 		{
 			try
 			{
+				File f = new File("Functional.obj");
+				if( !(f.exists()))
+					f.createNewFile();
 				FileInputStream aux = new FileInputStream("Functional.obj");
 				ObjectInputStream entrada = new ObjectInputStream( aux );	
 				a = (Functional)entrada.readObject();
