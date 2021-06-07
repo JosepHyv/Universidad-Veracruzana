@@ -118,6 +118,20 @@ public class JBusqueda extends JFrame{
 					ans = "No Existe " + acad;
 
 			}
+			else if( getPromesa().equals("Profesores de una Academia"))
+			{
+				Functional nodito = (Functional)getNodo();
+				int pos = nodito.findAcademia(acad);
+				if( pos != -1)
+				{
+					Profesor aux = nodito.getAcademia(pos).getCoordinador(); 
+					ans = aux.toString();
+				}
+				else ans = "No se encuentra la Academia\n";
+
+
+			}
+			else ans = "No Hay seleccion\n";
 
 
 			/// Aclaro, veremos como sale, la noche ya esta avanzada

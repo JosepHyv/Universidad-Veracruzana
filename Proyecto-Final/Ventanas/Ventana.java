@@ -88,7 +88,7 @@ public class Ventana extends JFrame {
 	{
 		public void actionPerformed(ActionEvent x )
 		{
-			JBusqueda ventana = new JBusqueda("Profesores", "Academia", getNodo());
+			JBusqueda ventana = new JBusqueda("Profesores de una Academia", "Academia", getNodo());
 		}
 	}
 

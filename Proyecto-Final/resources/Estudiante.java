@@ -13,6 +13,11 @@ public class Estudiante extends Template  {
 	public Estudiante(){
 	}
 
+	public Estudiante(String n)
+	{
+		this.nombre = n;
+	}
+
 	public Estudiante(String mat, String nomb){
 		this.matricula = mat;
 		this.nombre = nomb;
@@ -71,13 +76,14 @@ public class Estudiante extends Template  {
 	//// =========== Estudiante tiene toString ============
 	public String toString()
 	{
-		String ans = "\n\tEstudiantes\n";
+		String ans = "\n==============================\n\tEstudiante\t\n";
 		ans += "Nombre: " + this.nombre + "\n";
 		ans += "Matricula: " + this.matricula + "\n";
 		ans += "Creditos: " + String.valueOf(this.numCreditos) + "\n";
 		ans += "Cursos: " + String.valueOf(this.numCurso) + "\n";
 		for(int c = 0 ; c<this.numCurso; c++)
-			ans += this.curso[c] + " ";
+			ans += String.valueOf(c+1) + ") " +  this.curso[c] + " ";
+		ans += "\n================\n";
 		return ans;
 	}
 }

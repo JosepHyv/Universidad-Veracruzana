@@ -88,12 +88,14 @@ public class ExperienciaEducativa extends Template  {
 	{
 		// hacer algo
 
-		String ans = "\tExperiencia Educativa\n\t" + this.nombre + "\n";
+		String ans = "\n==============================\n\tExperiencia Educativa\t\n";
+		ans += "Nombre: " + this.nombre + "\n";
 		ans += "Clave: " + this.clave + "\n";
 		ans += "Creditos: " + String.valueOf(this.totalDeCreditos) + "\n";
 		ans += "Numero de Cursos: " + String.valueOf(this.numCurso) + "\n";
 		for(int c = 0; c<this.numCurso; c++)
-			ans += curso[c];
+			ans += String.valueOf(c+1) + ") " + this.curso[c].getNombre() + "\n";
+		ans += "\n================\n";
 		return ans;
 
 	}

@@ -98,14 +98,15 @@ public class Curso extends Template  {
 	public String toString()
 	{
 
-		String ans = "\n\tCurso\n\t" + this.nombre + "\n";
+		String ans = "\n==============================\n\tCurso\t\n";
+		ans += "Nombre: " + this.nombre + "\n";
 		ans += "Bloque: " + String.valueOf((int)this.bloque) + "\n";
 		ans += "Seccion: " + String.valueOf((int)this.seccion) + "\n";
 		ans += "Docente: " + this.docente + "\n";
 		ans += "Alumnos: " + String.valueOf((int)this.numAlumno) + "\n";
-		ans += "Matriculas: \n";
 		for(int c = 0 ; c<this.numAlumno; c++)
-			ans += this.alumno[c] + "\n";
+			ans += String.valueOf(c+1) + ") " + this.alumno[c] + "\n";
+		ans += "\n================\n";
 		return ans;
 
 

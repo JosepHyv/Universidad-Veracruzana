@@ -67,12 +67,13 @@ public class Academia  extends Template  {
 	//// ======== Academia tiene toString =======
 	public String toString()
 	{
-		String ans = "\tAcademia\n";
+		String ans = "\n==============================\n\tAcademia\t\n";
 		ans += "Nombre: " + this.nombre + "\n";
-		ans += "Coordinador : " + this.coordinador + "\n";
+		ans += "Coordinador : " + this.coordinador.getNombre() + "\n";
 		ans += "\nExperiencias: " + String.valueOf(this.numExperiencia) +"\n";
 		for(int c = 0 ; c<this.numExperiencia; c++)
-			ans += this.ee[c];
+			ans += String.valueOf(c+1) + ") " + this.ee[c].getNombre() + "\n";
+		ans += "\n================\n";
 		return ans;
 
 

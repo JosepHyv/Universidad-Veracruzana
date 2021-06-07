@@ -33,6 +33,7 @@ public class Main
 			}
 			else if(op == 1 )
 			{
+				existe = !(padre.empty());
 				if( !(existe) )
 				{
 					/// agrego todo desde el inicio
@@ -223,7 +224,7 @@ public class Main
 			else if( op == 2)
 			{
 				clearScreen();
-				//System.out.println(padre);
+				System.out.println(padre);
 				//IMenu menu = new IMenu();
 				Ventana consulta = new Ventana(padre);
 				
@@ -235,6 +236,72 @@ public class Main
 			else if(op == 4)
 			{
 				/// elimino 
+				clearScreen();
+				int opcion = 0;
+				while( (opcion >= 6 || opcion < 1) )
+				{
+					System.out.println("Selecciona la Opcion");
+					System.out.println("1) Eliminar una Academia");
+					System.out.println("2) Eliminar un Profesor");
+					System.out.println("3) Eliminar una Experiencia");
+					System.out.println("4) Eliminar un Alumno");
+					System.out.println("5) Eliminar un Curso");
+
+					opcion = sc.nextInt();
+				}
+
+				if( opcion == 1 )
+				{
+					clearScreen();
+					System.out.println("Ingresa el Nombre de la Academia");
+					String en = sc.next();
+					int pos = padre.findAcademia(en);
+					if( pos != -1)
+					{
+						Academia ac = padre.getAcademia(pos);
+						padre.remove(ac);
+						padre.remove(ac.getCoordinador());
+						for(int c = 0 ; c<ac.getNumExperiencia(); c++)
+						{
+							ExperienciaEducativa ep = ac.getEE(c);
+							int tam = ep.getNumCurso();
+							for(int d = 0 ; d<tam; d++)
+							{
+								Curso cs = ep.getCurso(d);
+								padre.remove(new Profesor(cs.getDocente()));
+								for(int h = 0 ; h<cs.getNumAlumno(); h++)
+								{
+									
+									int xpos = padre.findEstudiante(cs.getAlumno(h));
+									if( xpos != -1)
+										padre.remove(new Estudiante(cs.getAlumno(h)));
+								}
+
+							}
+						}
+
+					}
+
+				}
+				else if( opcion == 2)
+				{
+					/// Eliminar un Profesor
+					clearScreen();
+				}
+				else if( opcion == 3)
+				{
+					// Eliminar una Experiencia
+					clearScreen();
+				}
+				else if( opcion == 4)
+				{
+					// Eliminar un Alumno
+				}
+				else if( opcion == 5)
+				{
+					// Eliminar un Curso
+				}
+
 			}
 			else if( op == 5 )
 			{
@@ -246,7 +313,7 @@ public class Main
 		}
 
 		flujo.save(padre);
-
+		System.exit(0);
 
 
 

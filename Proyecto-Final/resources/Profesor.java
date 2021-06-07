@@ -14,6 +14,11 @@ public class Profesor extends Template {
 	public Profesor(){
 	}
 
+	public Profesor(String nn)
+	{
+		this.nombre = nn;
+	}
+
 	public Profesor( String nomb, String num, String contra){
 		this.numeroDePersonal = num;
 		this.nombre = nomb;
@@ -78,13 +83,14 @@ public class Profesor extends Template {
 	///======= Profesor tiene toString ==========
 	public String toString()
 	{
-		String ans = "\n\tProfesor\n";
+		String ans = "\n==============================\n\tProfesor\t\n";
 		ans += "Nombre: " + this.nombre + "\n";
 		ans += "Numero Personal: " + this.numeroDePersonal + "\n";
 		ans += "Contratacion: " + this.tipoDeContratacion + "\n";
-		ans += "\tCursos\n";
+		ans += "\tCursos: " + String.valueOf(this.numCurso) + "\n";
 		for(int c = 0 ; c<this.numCurso; c++)
-			ans += curso[c] + "\n";
+			ans += String.valueOf(c+1) + ") " + this.curso[c] + "\n";
+		ans += "\n================\n";
 		return ans;
 
 	}

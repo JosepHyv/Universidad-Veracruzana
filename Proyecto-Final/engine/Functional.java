@@ -1,5 +1,5 @@
 package engine;
-
+import resources.ExperienciaEducativa;
 /* todas son necesarias, no eliminar */
 import resources.Template;
 import resources.Academia;
@@ -214,17 +214,25 @@ public class Functional extends Template
 
 	public String toString()
 	{
-		String res = "\tTotal de nodos\n";
+		String res = "\n==============================\n\tTotal de Academias \t\n";
 		res += "\tCada Academia: \n";
 		for(int c = 0 ; c<this.it1; c++)
+		{
 			res += this.academy[c];
-		res += "\n\tCada Profesor: \n";
-		for(int c = 0 ; c<this.it2; c++)
-			res += this.teacher[c];
-		res += "\n\tCada Estudiante: \n";
-		for(int c = 0 ; c<this.it3; c++)
-			res += this.student[c];
+			res += this.academy[c].getCoordinador();
+			for(int d = 0 ; d<this.academy[c].getNumExperiencia(); d++)
+			{
+				int tam = this.academy[c].getEE(d).getNumCurso();
+				ExperienciaEducativa aux = this.academy[c].getEE(d);
+				for(int e = 0 ; e<tam; e++)
+					res += aux.getCurso(e).toString();
+			}
+
+				
+		}
+
 		return res;
+	
 	}
 
 	public boolean empty()
