@@ -103,12 +103,12 @@ public class Functional extends Template
 		}
 		else
 		{	
-			System.err.println("Antes "+ this.it3);
+			//System.err.println("Antes "+ this.it3);
 			if( find( x.getNombre(), this.student, this.it3) == -1 && this.it3 < 12)
 				this.student[this.it3++] = ((Estudiante)x);
 			else 
 			{
-				System.err.println("Despues "+ this.it3);
+				//System.err.println("Despues "+ this.it3);
 				System.err.println("Error en espacios");
 				return;
 			}
