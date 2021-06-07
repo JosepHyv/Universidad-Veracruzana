@@ -67,6 +67,8 @@ public class Ventana extends JFrame {
 			//cerrar la ventana y finalizar el programa
 			setVisible(false);
 			dispose();
+			e = new WindowEvent((Window) App.getFrame(), WindowEvent.WINDOW_CLOSING);
+  		    App.getFrame().dispatchEvent(we);
 			//System.exit(0);
 		}
 		public void windowActivated(WindowEvent e){}
