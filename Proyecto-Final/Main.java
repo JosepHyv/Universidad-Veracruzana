@@ -330,8 +330,150 @@ public class Main
 			}
 			else if( op == 3 )
 			{
-				///Modificar 
-				
+				///Modificar
+				clearScreen();
+				boolean opcion = true;
+				int numOpcion = 0;
+				while( opcion )
+				{
+					System.out.println("Seleccione una Opcion");
+					System.out.println("1) Modificar una Academia");
+					System.out.println("2) Modificar un Profesor");
+					System.out.println("3) Modificar una Experiencia");
+					System.out.println("4) Modificar un Alumno");
+					System.out.println("5) Modificar un Curso");
+
+					numOpcion = sc.nextInt();
+					if( numOpcion >=1 && numOpcion <= 6 )
+						opcion = false;
+				}
+
+				if(numOpcion == 1)
+				{
+					clearScreen();
+					System.out.println("¿Qué Academia desea modificar?");
+					// imprimir la lista de las academias
+
+
+					for (int i = 0; i<padre.sizeAcademia(); i++)
+					{
+						Academia ac = padre.getAcademia(i);
+						System.out.println(i +") "+ ac.getNombre());
+
+					}
+
+					int opcionAmodificar = 0;
+					opcionAmodificar = sc.nextInt();
+					if( opcionAmodificar < 0 || opcionAmodificar > padre.sizeAcademia())
+					{
+						System.out.println("Opcion no Valida");
+						break;
+					}
+					
+					int modAcademia = 0;
+					System.out.println("¿Qué desea modificar?");
+					System.out.println("1) Modificar el nombre");
+					System.out.println("2) Modificar el coordinador");
+					System.out.println("3) Modificar una Experiencia");
+					System.out.println("4) Experiencia educativas");
+					modAcademia = sc.nextInt();
+
+					if (modAcademia == 1)
+					{
+						System.out.println("Escriba el nuevo nombre de la Academia");
+						sc.nextLine();
+						String nomb = sc.nextLine();
+						(padre.getAcademia(opcionAmodificar)).setNombre(nomb);
+
+					} 
+					else if (modAcademia == 2)
+					{
+						System.out.println("Escriba el nuevo nombre del coordinador");
+						sc.nextLine();
+						String coor = sc.nextLine();
+						//(padre.getAcademia(opcionAmodificar)).getCoordinador(coor);
+						/// verificar que Profesor es el coordinador de la academia 
+						/// ingresar el nombre del nuevo coordinaro 
+						/// si ya tenemos registrado a ese coordinador
+						/// hacemos que el coordinador sea el (padre.getAcademia(opcionAmodificar)).setCoordinador(padre.getProfesor(padre.findProfesor()));
+						/// ajustar el puntero a profesor 
+					} 
+					else if (modAcademia == 3)
+					{
+						System.out.println("Escriba la opcion de la Experiencia");
+						for (int i= 0; i < padre.sizeAcademia(); i++)
+						{
+							System.out.println("1) " + padre.getAcademia(i).getNombre());
+						}
+
+						int opc = sc.nextInt();
+						if (opc == 1) 
+						{
+							//Modifique a la academia 1
+						}
+
+				 	}
+
+				}
+				else if (numOpcion == 2)
+				{
+					System.out.println("¿Qué profesor desea modificar?");
+					// imprimir la lista de profesores
+
+					for (int i= 0; i < padre.sizeProfesor(); i++)
+					{
+						Profesor prof = padre.getProfesor(i);
+						System.out.println(i + ")" + prof.getNombre());
+					}
+
+					System.out.println("¿Qué desea modificar?");
+					System.out.println("1) Nombre");
+					System.out.println("2) Tipo de contratación");
+					System.out.println("3) Modificar una Experiencia");
+					System.out.println("4) Cursos");
+//					sc.nextLine();
+					int modProfesor = sc.nextInt();
+
+					if (modProfesor == 1)
+					{
+						System.out.println("Escriba el nuevo nombre del profesor");
+						sc.nextLine();
+						String nomb = sc.nextLine();
+						///ac[i] = setNombre(nomb);
+
+					} 
+					else if (modProfesor == 2)
+					{
+						System.out.println("Escriba el nuevo tipo de contratación");
+						sc.nextLine();
+						String cont = sc.nextLine();
+						//ac[i] = padre.setTipo(coor);
+					} 
+					else if (modProfesor == 3)
+					{
+						System.out.println("Escriba la opcion de la Experiencia");
+						for (int i= 0; i < padre.sizeAcademia(); i++)
+						{
+							System.out.println("1) " +padre.getAcademia(i).getNombre());
+						}
+//						sc.nextLine();
+						int opc = sc.nextInt();
+						if (opc == 1) 
+						{
+						//Modifique a la experiencia asignada
+						}
+
+				 	}
+				}
+				else if( numOpcion == 3)
+				{
+					//"3) Modificar una Experiencia"
+				}
+				else if( numOpcion == 4)
+				{
+					// "4) Experiencia educativas"
+				}
+			
 
 			}
 			else if(op == 4)
