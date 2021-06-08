@@ -104,7 +104,7 @@ public class Estudiante extends Template  {
 		ans += "Creditos: " + String.valueOf(this.numCreditos) + "\n";
 		ans += "Cursos: " + String.valueOf(this.numCurso) + "\n";
 		for(int c = 0 ; c<this.numCurso; c++)
-			ans += String.valueOf(c+1) + ") " +  this.curso[c] + " ";
+			ans += String.valueOf(c+1) + ") " +  this.curso[c] + "\n";
 		ans += "\n================\n";
 		return ans;
 	}

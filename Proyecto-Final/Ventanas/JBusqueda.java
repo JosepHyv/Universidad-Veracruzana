@@ -109,7 +109,11 @@ public class JBusqueda extends JFrame{
 							{
 								int xpos = aux.findEstudiante(cursito.getAlumno(er));
 								if(xpos != -1)
-									ans += aux.getEstudiante(xpos);					
+								{
+									String checando = aux.getEstudiante(xpos).toString();
+									if( ans.indexOf(checando) == -1)
+										ans += aux.getEstudiante(xpos);					
+								}
 							}
 						}
 					}

@@ -153,7 +153,68 @@ public class Main
 						boolean mensaje = true;
 						/// Asignar un Alumno a un Curso
 						System.out.println("Ingresa el Nombre del Curso");
-						String ea = sc.next();
+						sc.nextLine();
+						String ea = sc.nextLine();
+						int posCurso = -1 ;
+						int posAcademia = -1;
+						int posEE = -1;
+						for(int c = 0 ; c<padre.sizeAcademia(); c++)
+						{
+							Academia it = padre.getAcademia(c);
+							for(int d = 0 ; d<it.getNumExperiencia(); d++)
+							{
+								ExperienciaEducativa exp = it.getEE(d);
+								posCurso = exp.findCurso(ea);
+								if( posCurso != -1)
+								{	
+									posAcademia = c;
+									posEE = d;
+									mensaje = false;
+									break;
+								}
+							}
+
+							if( mensaje == false)
+								break;
+						}
+
+						if( posCurso != -1)
+						{
+
+							Curso cursito = ((padre.getAcademia(posAcademia)).getEE(posEE)).getCurso(posCurso);
+							System.out.println("Ingresa el Nombre del Alumno");
+							String name = sc.nextLine();
+							(((padre.getAcademia(posAcademia)).getEE(posEE)).getCurso(posCurso)).addEstudiante(name);
+							int tpos = padre.findEstudiante(name);
+							Estudiante ess = new Estudiante();
+							if(tpos == -1)
+							{
+								ess.setNombre(name);
+								System.out.println("Ingresa la Matricula");
+								String mati = sc.next();
+								ess.setMatricula(mati);
+								int credito = ((padre.getAcademia(posAcademia)).getEE(posEE)).getTotalDeCreditos();
+								ess.setNumCreditos(credito);
+								ess.addCurso(ea);
+								padre.insert(ess);
+							}
+							else 
+							{
+								int credito = ((padre.getAcademia(posAcademia)).getEE(posEE)).getTotalDeCreditos();
+								Estudiante esi = (padre.getEstudiante(tpos));
+								(padre.getEstudiante(tpos)).setNumCreditos(esi.getNumCreditos() + credito);
+								(padre.getEstudiante(tpos)).addCurso(ea);
+							}
+
+						}
+						else
+						{
+							System.out.println("No se pudo insertar");
+						}
+
+
+						/*
+						Cambiando por que hay errores 
 						for(int c = 0; c<padre.sizeAcademia(); c++)
 						{
 							for(int d = 0 ; d<padre.getAcademia(c).getNumExperiencia(); d++)
@@ -190,7 +251,7 @@ public class Main
 						if( mensaje)
 						{
 							System.out.println("No se pudo insertar");
-						}
+						}*/
 
 					}
 					else if ( opcion == 5)
@@ -490,10 +551,9 @@ public class Main
 		Scanner sc = new Scanner(System.in);
 		String x = "", y = "";
 		int z = 0, a = 0;
-		System.out.println("Ingresa el Nombre del Curso");
-		x = sc.nextLine();
 		System.out.println("Ingresa el Nrc del Curso");
 		y = sc.nextLine();
+		x = y;
 		System.out.println("Ingresa el Bloque del Curso ( en numero )");
 		z = sc.nextInt();
 		System.out.println("Ingresa la Seccion del Curso ( en numero )");
