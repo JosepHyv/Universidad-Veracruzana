@@ -374,8 +374,6 @@ public class Main
 					System.out.println("¿Qué desea modificar?");
 					System.out.println("1) Modificar el nombre");
 					System.out.println("2) Modificar el coordinador");
-					System.out.println("3) Modificar una Experiencia");
-					System.out.println("4) Experiencia educativas");
 					modAcademia = sc.nextInt();
 
 					if (modAcademia == 1)
@@ -391,28 +389,17 @@ public class Main
 						System.out.println("Escriba el nuevo nombre del coordinador");
 						sc.nextLine();
 						String coor = sc.nextLine();
+						((padre.getAcademia(opcionAmodificar)).getCoordinador()).setNombre(coor);
+						int posicion = padre.findProfesor(coor);
+						(padre.getProfesor(posicion)).setNombre(coor);
 						//(padre.getAcademia(opcionAmodificar)).getCoordinador(coor);
 						/// verificar que Profesor es el coordinador de la academia 
 						/// ingresar el nombre del nuevo coordinaro 
 						/// si ya tenemos registrado a ese coordinador
 						/// hacemos que el coordinador sea el (padre.getAcademia(opcionAmodificar)).setCoordinador(padre.getProfesor(padre.findProfesor()));
 						/// ajustar el puntero a profesor 
+
 					} 
-					else if (modAcademia == 3)
-					{
-						System.out.println("Escriba la opcion de la Experiencia");
-						for (int i= 0; i < padre.sizeAcademia(); i++)
-						{
-							System.out.println("1) " + padre.getAcademia(i).getNombre());
-						}
-
-						int opc = sc.nextInt();
-						if (opc == 1) 
-						{
-							//Modifique a la academia 1
-						}
-
-				 	}
 
 				}
 				else if (numOpcion == 2)
@@ -425,6 +412,9 @@ public class Main
 						Profesor prof = padre.getProfesor(i);
 						System.out.println(i + ")" + prof.getNombre());
 					}
+
+					int opcionAmodificar = 0;
+					
 
 					System.out.println("¿Qué desea modificar?");
 					System.out.println("1) Nombre");
