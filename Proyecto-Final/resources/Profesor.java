@@ -74,6 +74,13 @@ public class Profesor extends Template {
 		return curso[i];
 	}
 
+	public void setCurso(int a, String b)
+	{
+		if( a < 0 || a >= this.numCurso)
+			return;
+		this.curso[a] = b;
+	}
+
 	/// added getNumCurso()
 	public int getNumCurso()
 	{

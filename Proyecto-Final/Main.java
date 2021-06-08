@@ -341,10 +341,9 @@ public class Main
 					System.out.println("2) Modificar un Profesor");
 					System.out.println("3) Modificar una Experiencia");
 					System.out.println("4) Modificar un Alumno");
-					System.out.println("5) Modificar un Curso");
 
 					numOpcion = sc.nextInt();
-					if( numOpcion >=1 && numOpcion <= 6 )
+					if( numOpcion >= 1 && numOpcion < 5 )
 						opcion = false;
 				}
 
@@ -389,17 +388,28 @@ public class Main
 						System.out.println("Escriba el nuevo nombre del coordinador");
 						sc.nextLine();
 						String coor = sc.nextLine();
-						((padre.getAcademia(opcionAmodificar)).getCoordinador()).setNombre(coor);
+						Profesor prof=new Profesor();
+						//((padre.getAcademia(opcionAmodificar)).getCoordinador()).setNombre(coor);
 						int posicion = padre.findProfesor(coor);
-						(padre.getProfesor(posicion)).setNombre(coor);
+						//(padre.getProfesor(posicion)).setNombre(coor);
+						if(posicion == -1)
+						{
+							System.out.println("El profesor no se encuentra registrado, ingrese datos del profesor");
+							prof=creaProfesor();
+							(padre.getAcademia(opcionAmodificar)).setCoordinador(prof);
+						}
+						else
+						{
+							(padre.getAcademia(opcionAmodificar)).setCoordinador(padre.getProfesor(posicion));
+						}
 						//(padre.getAcademia(opcionAmodificar)).getCoordinador(coor);
-						/// verificar que Profesor es el coordinador de la academia 
-						/// ingresar el nombre del nuevo coordinaro 
+						/// verificar que Profesor es el coordinador de la academia
+						/// ingresar el nombre del nuevo coordinaro
 						/// si ya tenemos registrado a ese coordinador
 						/// hacemos que el coordinador sea el (padre.getAcademia(opcionAmodificar)).setCoordinador(padre.getProfesor(padre.findProfesor()));
-						/// ajustar el puntero a profesor 
+						/// ajustar el puntero a profesor
 
-					} 
+					}
 
 				}
 				else if (numOpcion == 2)
@@ -413,14 +423,17 @@ public class Main
 						System.out.println(i + ")" + prof.getNombre());
 					}
 
-					int opcionAmodificar = 0;
-					
+					int opcionAmodificar = sc.nextInt();
+					if( opcionAmodificar < 0 || opcionAmodificar >= padre.sizeProfesor())
+					{
+						System.out.println("No se puedde ejecutar la operacion");
+						return;
+					}
 
 					System.out.println("¿Qué desea modificar?");
 					System.out.println("1) Nombre");
 					System.out.println("2) Tipo de contratación");
-					System.out.println("3) Modificar una Experiencia");
-					System.out.println("4) Cursos");
+					System.out.println("3) Curso");
 //					sc.nextLine();
 					int modProfesor = sc.nextInt();
 
@@ -429,6 +442,7 @@ public class Main
 						System.out.println("Escriba el nuevo nombre del profesor");
 						sc.nextLine();
 						String nomb = sc.nextLine();
+						(padre.getProfesor(opcionAmodificar)).setNombre(nomb);
 						///ac[i] = setNombre(nomb);
 
 					} 
@@ -437,20 +451,45 @@ public class Main
 						System.out.println("Escriba el nuevo tipo de contratación");
 						sc.nextLine();
 						String cont = sc.nextLine();
+						padre.getProfesor(opcionAmodificar).setTipoDeContratacion(cont);
 						//ac[i] = padre.setTipo(coor);
 					} 
 					else if (modProfesor == 3)
 					{
-						System.out.println("Escriba la opcion de la Experiencia");
-						for (int i= 0; i < padre.sizeAcademia(); i++)
+						
+
+						System.out.println("Cursos impartidos por el profesor");
+						for (int i=0; i<(padre.getProfesor(opcionAmodificar)).getNumCurso(); i++)
 						{
-							System.out.println("1) " +padre.getAcademia(i).getNombre());
+							System.out.println(i+")"+padre.getProfesor(opcionAmodificar).getCurso(i));
 						}
-//						sc.nextLine();
-						int opc = sc.nextInt();
-						if (opc == 1) 
+						int cursoAmodificar=sc.nextInt();
+						if (cursoAmodificar<0||cursoAmodificar>=padre.getProfesor(opcionAmodificar).getNumCurso())
 						{
-						//Modifique a la experiencia asignada
+							System.out.println("El numero que ha ingresado es incorrecto, no se puede realizar la operacion");
+							return;
+						}
+						else
+						{
+							System.out.println("Ingrese el nuevo NRC del curso");
+							sc.nextLine();
+							String nuevoCurso=sc.nextLine();
+							padre.getProfesor(opcionAmodificar).setCurso(cursoAmodificar, nuevoCurso);
+							int tt = padre.sizeAcademia();
+							for(int c = 0 ; c<tt; c++)
+							{
+								Academia tm = padre.getAcademia(c);
+								for(int d = 0 ; d<tm.getNumExperiencia(); d++)
+								{
+									ExperienciaEducativa ee = tm.getEE(d);
+									int cpos = ee.findCurso(nuevoCurso);
+									if( cpos != -1)
+									{
+										ee.getCurso(cpos).setDocente((padre.getProfesor(opcionAmodificar).getNombre()));
+										break;	
+									}
+								}
+							}
 						}
 
 				 	}
@@ -458,10 +497,92 @@ public class Main
 				else if( numOpcion == 3)
 				{
 					//"3) Modificar una Experiencia"
+					sc.nextLine();
+					System.out.println("Ingrese la academia a la que pertenece");
+					String aca=sc.nextLine();
+					int posAca;
+					posAca=padre.findAcademia(aca);
+					if(posAca==-1)
+						System.out.println("No se encontro la academia");
+					else
+					{
+						System.out.println("Ingrese la experiencia a modificar");
+						for(int i=0; i<padre.getAcademia(posAca).getNumExperiencia(); i++)
+						{
+							System.out.println(i+")"+padre.getAcademia(posAca).getEE(i).getNombre());
+						}
+					}
+					int posEE, auxi;
+					String aux;
+					posEE=sc.nextInt();
+					if(posEE<0||posEE>=padre.getAcademia(posAca).getNumExperiencia())
+					{
+						System.out.println("Numero incorrecto, no se puede ejecutar la operacion");
+						return;
+					}
+					else
+					{
+						System.out.println("¿Que desea modificar?");
+						System.out.println("1)Nombre de la experiencia");
+						System.out.println("2)Clave");
+						System.out.println("3)Total de creditos");
+						auxi=sc.nextInt();
+						if (auxi==1)
+						{
+							sc.nextLine();
+							System.out.println("Ingrese el nuevo nombre de la EE");
+							aux=sc.nextLine();
+							padre.getAcademia(posAca).getEE(posEE).setNombre(aux);
+						}
+						else if(auxi==2)
+						{
+							System.out.println("Ingrese la nueva clave de la EE");
+							aux=sc.nextLine();
+							padre.getAcademia(posAca).getEE(posEE).setClave(aux);
+						}
+						else if(auxi==3)
+						{
+							System.out.println("Ingrese el nuevo numero de creditos de la EE");
+							auxi=sc.nextInt();
+							padre.getAcademia(posAca).getEE(posEE).setTotalDeCreditos(auxi);
+						}
+					}
 				}
 				else if( numOpcion == 4)
 				{
-					// "4) Experiencia educativas"
+				
+					// "4) Alumno"
+					sc.nextLine();
+					System.out.println("Ingrese el nombre del estudiante");
+					String nomb=sc.nextLine();
+					int posAlum = -1;
+					posAlum=padre.findEstudiante(nomb);
+					if(posAlum==-1)
+						System.out.println("No se encontro el estudiante");
+					else
+					{
+						System.out.println("Que desea modificar?");
+						System.out.println("1)Nombre");
+						System.out.println("2)Matricula");
+						int ops;
+						ops=sc.nextInt();
+						if(ops==1)
+						{
+							sc.nextLine();
+							System.out.println("Ingrese el nuevo nombre del estudiante");
+							nomb=sc.nextLine();
+							padre.getEstudiante(posAlum).setNombre(nomb);
+						}
+						if(ops==2)
+						{
+							sc.nextLine();
+							System.out.println("Ingrese la nueva matricula del estudiante");
+							nomb=sc.nextLine();
+							padre.getEstudiante(posAlum).setMatricula(nomb);
+						}
+					}
+					
+
 				}
 			
 
