@@ -13,7 +13,7 @@ public class Main
 		Streams flujo = new Streams();
 		Functional padre = (Functional)flujo.read(new Functional());
 		boolean existe = !(padre.empty());
-		System.out.println(existe + " " + padre.sizeAcademia() + " " + padre.sizeProfesor() + " " + padre.sizeEstudiante());
+		//System.out.println(existe + " " + padre.sizeAcademia() + " " + padre.sizeProfesor() + " " + padre.sizeEstudiante());
 		Scanner sc = new Scanner(System.in);
 //		IMenu menu = new IMenu();
 		boolean sigue = true;
@@ -268,14 +268,36 @@ public class Main
 								int pos = padre.getAcademia(c).getEE(d).findCurso(ea);
 								if(pos != -1)
 								{
-									
-									Profesor profe = creaProfesor();
-									int pProf = padre.findProfesor(profe.getNombre());
+									Profesor profe = new Profesor();
+									System.out.println("Ingresa el Nombre del Profesor");
+									sc.nextLine();
+									String nns = sc.nextLine();
+									int pProf = padre.findProfesor(nns);
 									if( pProf != -1)
-										profe = padre.getProfesor(pProf);
-									//else profe = creaProfesor();
-									padre.getAcademia(c).getEE(d).getCurso(pos).addDocente(profe.getNombre());
-									padre.insert(profe);
+									{
+										(padre.getProfesor(pProf)).addCurso(ea);
+										Profesor psss = padre.getProfesor(pProf);
+										(((padre.getAcademia(c)).getEE(d)).getCurso(pos)).addDocente(psss.getNombre());
+
+									}
+									else
+									{
+										String y = "", z = "";
+										
+										System.out.println("Ingresa el Numero de Personal");		
+										y = sc.nextLine();
+										System.out.println("Ingresa el Tipo de Contratacion");
+										z = sc.nextLine();
+										profe.setNombre(nns);
+										profe.setNumeroDePersonal(y);
+										profe.setTipoDeContratacion(z);
+										profe.addCurso(ea);
+									//	System.out.println("Antes " + padre.sizeProfesor());
+										padre.insert(profe);
+									//	System.out.println("Despues " + padre.sizeProfesor());
+										(((padre.getAcademia(c)).getEE(d)).getCurso(pos)).addDocente(profe.getNombre());
+
+									}
 									mensaje = false;
 									break;
 								}
@@ -309,7 +331,7 @@ public class Main
 			else if( op == 3 )
 			{
 				///Modificar 
-
+				
 
 			}
 			else if(op == 4)

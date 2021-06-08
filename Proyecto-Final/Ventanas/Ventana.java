@@ -41,8 +41,9 @@ public class Ventana extends JFrame {
 		b4 = new JButton("Profesores de una Academia");
 		b4.addActionListener(new EscucharPr());
 		add(b4);
-		/*b5 = new JButton("Estudiante");
-		add(b5);*/
+		b5 = new JButton("Profesor de un Curso");
+		b5.addActionListener(new EscucharPr2());
+		add(b5);
 
 
 		/// Aqui comienzan mis modificaciones :3 
@@ -51,7 +52,7 @@ public class Ventana extends JFrame {
 
 		/// aqui las vou a  dejar 
 		addWindowListener(new EscuchaVentana());
-		setSize(400,150);
+		setSize(400,200);
 		setVisible(true);
 	}
 
@@ -89,6 +90,13 @@ public class Ventana extends JFrame {
 		public void actionPerformed(ActionEvent x )
 		{
 			JBusqueda ventana = new JBusqueda("Profesores de una Academia", "Academia", getNodo());
+		}
+	}
+	class EscucharPr2 implements ActionListener
+	{
+		public void actionPerformed(ActionEvent x )
+		{
+			JBusqueda ventana = new JBusqueda("Profesor de un Curso", "Curso", getNodo());
 		}
 	}
 

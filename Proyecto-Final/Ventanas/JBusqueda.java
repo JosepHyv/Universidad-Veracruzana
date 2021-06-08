@@ -135,7 +135,36 @@ public class JBusqueda extends JFrame{
 
 
 			}
-			else ans = "No Hay seleccion\n";
+			else if( getPromesa().equals("Profesor de un Curso"))
+			{
+				Functional nodito = (Functional)getNodo();
+				int tam = nodito.sizeAcademia();
+				for(int c = 0 ; c<tam; c++)
+				{
+					int tam2 = (nodito.getAcademia(c)).getNumExperiencia();
+					for(int d = 0 ; d<tam2; d++)
+					{
+						ExperienciaEducativa ep = (nodito.getAcademia(c)).getEE(d);
+						int pos = ep.findCurso(acad);
+						if( pos != -1)
+						{
+							Curso cursito = ep.getCurso(pos);
+							int posb = nodito.findProfesor(cursito.getDocente());
+							if( posb != -1)
+							{
+								String valida = nodito.getProfesor(posb).toString();
+								if( ans.indexOf(valida) == -1)
+									ans += valida;
+
+							}
+						}
+					}
+				}
+
+			
+			}
+			if(ans.equals(""))
+				ans = "No Hay seleccion\n";
 
 
 			/// Aclaro, veremos como sale, la noche ya esta avanzada
